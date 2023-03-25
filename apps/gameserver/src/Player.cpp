@@ -925,3 +925,44 @@ void Player::LevelUp()
     ApplyVisualEffect(E_LEVELUP);
     //m_data.Exp = 0;
 }
+
+
+// New ArslaN
+
+
+void Player::PrivateNotice (std::string message)
+{
+
+    write(packet(S2C_NOTICE, "s", message.c_str()));
+}
+
+void Player::MapNotice (std::string message)
+{
+
+    WriteOnMap(packet(S2C_NOTICE, "s", message.c_str()));
+    
+}
+
+
+
+
+void Player::SightNotice (std::string message)
+{
+
+    WriteInSight(packet(S2C_NOTICE, "s", message.c_str()));
+    
+}
+
+
+
+void Player::TestNotice2 (std::string message)
+{
+
+    write(packet(S2C_NOTICE_2, "s", message.c_str()));
+}
+ 
+ void Player::TestMessage (std::string message)
+{
+
+    write(packet(S2C_MESSAGE, "s", message.c_str()));
+}

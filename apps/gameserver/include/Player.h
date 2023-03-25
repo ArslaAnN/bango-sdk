@@ -163,4 +163,9 @@ public:
     bool CanReciveExp();
     std::uint64_t CalculateExp(std::uint64_t exp, std::uint8_t monster_level);
     void LevelUp();
+
+
+    void MapNotice(std::string message);
+    void PrivateNotice(std::string message);
+
 };

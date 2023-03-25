@@ -129,9 +129,22 @@ int main(int argc, char** argv)
     CommandDispatcher::Register("/move2",           std::bind(&Player::OnMoveTo,            _1, _2));
 
     CommandDispatcher::Register("/online", [&](Player& player, CommandDispatcher::Token& token) {
-        std::string message = std::string{"Current Online: "} + std::to_string(Socket::GameServer().get_online());
-        player.write(packet(S2C_NOTICE, "s", message.c_str()));
+        std::string message = std::string{"Current Online Test: "} + std::to_string(Socket::GameServer().get_online());
+       // player.write(packet(S2C_NOTICE, "s", message.c_str())); // this is private notice
     });
+
+        CommandDispatcher::Register("/testMap", [&](Player& player, CommandDispatcher::Token& token) {
+        std::string message = std::string{"Current Online Test: "} + std::to_string(Socket::GameServer().get_online());
+        std::string messagemap = message + " this is a map notice";
+        player.MapNotice(messagemap);
+    });
+        CommandDispatcher::Register("/testPrivate", [&](Player& player, CommandDispatcher::Token& token) {
+        std::string message = std::string{"Current Online Test: "} + std::to_string(Socket::GameServer().get_online());
+        std::string messagePrivate = message + " this is a private notice";
+        player.PrivateNotice(messagePrivate);
+
+    });
+
 
     CommandDispatcher::Register("/mob", [&](Player& player, CommandDispatcher::Token& token) {
         int index = token;

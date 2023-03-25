@@ -137,6 +137,10 @@ public:
     virtual void Tick() = 0;
     virtual void Die() = 0;
 
+
+
+   void WriteOnMap(const bango::network::packet& p) const;
+
     std::unique_lock<std::mutex> Lock();
 protected:
     void AssignNewId();

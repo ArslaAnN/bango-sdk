@@ -5,6 +5,8 @@
 
 #include "World.h"
 
+
+
 using namespace bango::network;
 using namespace bango::utils;
 
@@ -133,6 +135,8 @@ void Character::WriteInSight(const packet& p) const
     World::Map(GetMap()).WriteInSight(*this, p);
 }
 
+
+
 void Character::ApplyVisualEffect(std::uint8_t effect_id)
 {
     WriteInSight(packet(S2C_EFFECT, "db", GetID(), effect_id));
@@ -148,3 +152,10 @@ void Character::AssignNewId()
     static id_t g_max_id=0;
     m_id = g_max_id++;
 }
+
+
+void Character::WriteOnMap(const packet& p) const
+{
+    World::Map(GetMap()).WriteOnMap(p);
+}
+
